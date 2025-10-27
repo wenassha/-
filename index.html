@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ผูกปิ่นโต — อาหารกลางวันส่งตรงเวลา</title>
+  <meta name="description" content="อาหารกลางวันส่งตรง 10:00 น. ลาซาล–แบริ่ง–บางนา เลือกเมนูล่วงหน้า/รายวัน ระบบเครดิตแชร์ค่าส่ง ชวนเพื่อนยิ่งคุ้ม" />
+  <meta property="og:title" content="ผูกปิ่นโต" />
+  <meta property="og:description" content="ส่งตรง 10:00 น. เลือกเมนูล่วงหน้า/รายวัน ระบบเครดิต แชร์ค่าส่งยิ่งคุ้ม" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://placehold.co/1200x630" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --brand:#4C51BF;
+      --brand-2:#0EA5E9;
+      --brand-dark:#111827;
+    }
+    body{font-family:"Noto Sans Thai", system-ui, -apple-system, Segoe UI, Roboto, sans-serif}
+    .chip{border:1px solid rgba(0,0,0,.08); padding:.25rem .6rem; border-radius:9999px; font-size:.8rem}
+    .glass{backdrop-filter: blur(6px); background:rgba(255,255,255,.7)}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="w-full bg-white/80 glass sticky top-0 z-50 border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://placehold.co/40x40" alt="โลโก้" class="rounded-full"/>
+        <span class="font-bold">ผูกปิ่นโต</span>
+        <span class="chip hidden md:inline">ส่งตรง 10:00 น.</span>
+        <span class="chip hidden md:inline">ลาซาล–แบริ่ง–บางนา</span>
+      </div>
+      <div class="flex gap-2">
+        <a href="#menu" class="px-3 py-2 rounded-lg hover:bg-gray-100">เมนูสัปดาห์นี้</a>
+        <a href="#plans" class="px-3 py-2 rounded-lg hover:bg-gray-100">แพ็กเกจ</a>
+        <a href="#how" class="px-3 py-2 rounded-lg hover:bg-gray-100">วิธีสั่ง</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:bg-gray-100">ติดต่อ</a>
+        <a href="https://line.me/R/ti/p/@puukpinto" target="_blank" class="ml-2 bg-[var(--brand)] text-white px-4 py-2 rounded-lg">สั่งผ่าน LINE OA</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-white via-sky-50 to-indigo-50"></div>
+    <div class="max-w-6xl mx-auto px-4 py-14 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-[var(--brand-dark)]">อาหารกลางวันคุณภาพ
+          <span class="text-[var(--brand)]">ส่งตรง 10:00 น.</span>
+        </h1>
+        <p class="mt-4 text-gray-600">เลือกเมนูได้ 3–5 รายการ/วัน — รายวัน/ล่วงหน้า ระบบเครดิตแชร์ค่าส่ง: ยิ่งสั่งพร้อมเพื่อน ยิ่งคุ้ม</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#menu" class="bg-[var(--brand)] text-white px-5 py-3 rounded-xl">ดูเมนูสัปดาห์นี้</a>
+          <a href="#plans" class="bg-white border px-5 py-3 rounded-xl">ดูแพ็กเกจ & เครดิต</a>
+        </div>
+        <div class="mt-6 text-sm text-gray-700 flex items-center gap-2">
+          <span class="chip bg-white">Cutoff สั่งวันนี้ก่อน <strong>00:00</strong></span>
+          <span class="chip bg-white">เวลาที่เหลือ: <span id="countdown">—</span></span>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://placehold.co/640x420" alt="ภาพเมนู" class="rounded-2xl shadow-lg"/>
+        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-md p-4 text-sm">
+          <div class="font-semibold">แชร์ค่าส่งกับเพื่อนร่วมงาน</div>
+          <div class="text-gray-600">ครบ 10 กล่องในจุดส่งเดียวกัน = ฟรีค่าส่ง</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">เมนูสัปดาห์นี้</h2>
+        <p class="text-gray-600 mt-1">ออริจินัล • เฮลท์ตี้ (450–550 kcal) • เมนูเทศกาล</p>
+      </div>
+      <a href="https://forms.gle/your-order-form" target="_blank" class="hidden md:inline bg-[var(--brand-2)] text-white px-4 py-2 rounded-lg">สั่งเลย</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+      <article class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+        <img src="https://placehold.co/640x360" alt="เมนู1" class="w-full h-44 object-cover"/>
+        <div class="p-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="chip">ออริจินัล</span>
+            <span class="chip">โปรตีนสูง</span>
+          </div>
+          <h3 class="font-semibold">ข้าวไก่พริกไทยดำ + ไข่ต้ม</h3>
+          <p class="text-sm text-gray-600 mt-1">ข้าวหอมมะลิ 180 g | โปรตีน ~28 g</p>
+          <div class="flex items-center justify-between mt-4">
+            <div class="font-bold">฿99</div>
+            <a href="https://forms.gle/your-order-form" target="_blank" class="text-[var(--brand)] font-semibold">สั่งเมนูนี้ →</a>
+          </div>
+        </div>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+        <img src="https://placehold.co/640x360" alt="เมนู2" class="w-full h-44 object-cover"/>
+        <div class="p-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="chip">เฮลท์ตี้</span>
+            <span class="chip">450–550 kcal</span>
+          </div>
+          <h3 class="font-semibold">อกไก่ย่างซอสเทอริยากิ + ข้าวกล้อง</h3>
+          <p class="text-sm text-gray-600 mt-1">สลัดผัก 120 g | โปรตีน ~32 g</p>
+          <div class="flex items-center justify-between mt-4">
+            <div class="font-bold">฿119</div>
+            <a href="https://forms.gle/your-order-form" target="_blank" class="text-[var(--brand)] font-semibold">สั่งเมนูนี้ →</a>
+          </div>
+        </div>
+      </article>
+      <article class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+        <img src="https://placehold.co/640x360" alt="เมนู3" class="w-full h-44 object-cover"/>
+        <div class="p-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="chip">เทศกาล</span>
+            <span class="chip">เจ</span>
+          </div>
+          <h3 class="font-semibold">กะเพราเห็ดรวมเต้าหู้ (เจ)</h3>
+          <p class="text-sm text-gray-600 mt-1">ข้าวกล้อง 160 g | โปรตีนพืช</p>
+          <div class="flex items-center justify-between mt-4">
+            <div class="font-bold">฿99</div>
+            <a href="https://forms.gle/your-order-form" target="_blank" class="text-[var(--brand)] font-semibold">สั่งเมนูนี้ →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="mt-6 text-center">
+      <a href="https://forms.gle/your-order-form" target="_blank" class="inline-block bg-[var(--brand)] text-white px-6 py-3 rounded-xl">ดูเมนูทั้งหมด & สั่งซื้อ</a>
+    </div>
+  </section>
+
+  <section id="plans" class="bg-white border-y">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-center">แพ็กเกจ & ระบบเครดิต</h2>
+      <p class="text-center text-gray-600 mt-2">เลือกได้: รายวัน • รายเดือน (Subscription) • เติมเครดิต (Credit) — รองรับการแชร์ค่าส่ง</p>
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <div class="bg-gray-50 rounded-2xl p-6 border">
+          <div class="text-sm font-semibold text-[var(--brand)]">รายวัน One‑time</div>
+          <div class="text-3xl font-extrabold mt-2">เริ่ม ฿99</div>
+          <ul class="mt-4 space-y-2 text-sm text-gray-700">
+            <li>สั่งภายใน 00:00 ของวันถัดไป</li>
+            <li>ค่าส่งคิดตามการแชร์ในจุดส่ง</li>
+            <li>เหมาะสำหรับลูกค้าใหม่/สั่งเป็นครั้งคราว</li>
+          </ul>
+          <a href="https://forms.gle/your-order-form" target="_blank" class="mt-5 inline-block bg-[var(--brand)] text-white px-5 py-2 rounded-lg">สั่งวันนี้</a>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border shadow-lg">
+          <div class="text-sm font-semibold text-[var(--brand)]">Subscription รายเดือน</div>
+          <div class="text-3xl font-extrabold mt-2">ลดสูงสุด 15%</div>
+          <ul class="mt-4 space-y-2 text-sm text-gray-700">
+            <li>ล็อกเมนูล่วงหน้า 7/15/30 วัน</li>
+            <li>แจ้งเตือนก่อนส่ง 1 วัน</li>
+            <li>ปรับเปลี่ยนเมนูได้ถึง 22:00 น.</li>
+          </ul>
+          <a href="https://forms.gle/your-subscribe-form" target="_blank" class="mt-5 inline-block bg-[var(--brand)] text-white px-5 py-2 rounded-lg">เริ่มสมัคร</a>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 border">
+          <div class="text-sm font-semibold text-[var(--brand)]">เครดิต (แนะนำ)</div>
+          <div class="text-3xl font-extrabold mt-2">คืนค่าส่งอัตโนมัติ</div>
+          <ul class="mt-4 space-y-2 text-sm text-gray-700">
+            <li>เติมเครดิต 500/1,000/2,000 บาท</li>
+            <li>ระบบแชร์ค่าส่ง: ครบ 10 กล่อง = ฟรีส่ง</li>
+            <li>คืนส่วนต่างเข้าวอลเล็ตหลังปิดรอบ</li>
+          </ul>
+          <a href="https://forms.gle/your-topup-form" target="_blank" class="mt-5 inline-block bg-[var(--brand)] text-white px-5 py-2 rounded-lg">เติมเครดิต</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-center">ขั้นตอนการสั่ง & แชร์ค่าส่ง</h2>
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border">
+        <div class="font-semibold">1) เลือกเมนู</div>
+        <p class="text-sm text-gray-600 mt-2">เลือกเมนูของวันถัดไปก่อน 00:00 หรือวางแผนล่วงหน้าสำหรับสมาชิก</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border">
+        <div class="font-semibold">2) เลือกจุดส่งเดียวกัน</div>
+        <p class="text-sm text-gray-600 mt-2">ระบบรวมออเดอร์บริษัท/คอนโดเดียวกันเพื่อเฉลี่ยค่าส่งอัตโนมัติ</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border">
+        <div class="font-semibold">3) รับส่วนต่างคืนในวอลเล็ต</div>
+        <p class="text-sm text-gray-600 mt-2">ครบ 10 กล่องในรอบเดียวกัน = ฟรีค่าส่ง คืนเข้าวอลเล็ตตอนเช้า</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-2xl font-bold">แอด LINE เพื่อสั่งง่ายที่สุด</h3>
+        <p class="text-gray-600 mt-2">กดเพิ่มเพื่อน แล้วเลือก “เมนูวันนี้” หรือ “ล็อกเมนูล่วงหน้า”</p>
+        <div class="mt-4 flex gap-3">
+          <a href="https://line.me/R/ti/p/@puukpinto" target="_blank" class="bg-[var(--brand)] text-white px-5 py-3 rounded-xl">เพิ่มเพื่อน LINE OA</a>
+          <a href="https://forms.gle/your-order-form" target="_blank" class="bg-white border px-5 py-3 rounded-xl">สั่งผ่านฟอร์ม</a>
+        </div>
+        <ul class="mt-6 text-sm text-gray-700 list-disc list-inside">
+          <li>ติดต่อ: 09x‑xxx‑xxxx</li>
+          <li>โซนจัดส่ง: ลาซาล–แบริ่ง–บางนา (ส่งตรง 10:00 น.)</li>
+          <li>ตัดรอบสั่ง: เที่ยงคืนของทุกวัน</li>
+        </ul>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-6 border text-center">
+        <img src="https://placehold.co/260x260" alt="QR LINE OA" class="mx-auto rounded-xl"/>
+        <div class="mt-3 text-sm text-gray-600">สแกนเพื่อเพิ่มเพื่อน LINE OA</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center text-xs text-gray-500 py-8">© <span id="year"></span> ผูกปิ่นโต • สุขภาพดี อร่อย คุ้มค่า • ส่งตรงเวลา 10:00 น.</footer>
+
+  <script>
+    function updateCountdown(){
+      const now = new Date();
+      const midnight = new Date();
+      midnight.setHours(24,0,0,0);
+      const diff = midnight - now;
+      const h = Math.floor(diff/3.6e6);
+      const m = Math.floor((diff%3.6e6)/6e4);
+      const s = Math.floor((diff%6e4)/1e3);
+      const pad = (n)=> String(n).padStart(2,'0');
+      const el = document.getElementById('countdown');
+      if(el){ el.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`; }
+    }
+    setInterval(updateCountdown, 1000); updateCountdown();
+    const y = document.getElementById('year'); if(y){ y.textContent = new Date().getFullYear(); }
+  </script>
+</body>
+</html>
